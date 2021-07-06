@@ -6,18 +6,18 @@
     <!-- 面包屑导航 -->
     <el-breadcrumb separator-class="el-icon-arrow-right">
       <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-      <el-breadcrumb-item>商品管理</el-breadcrumb-item>
+      <el-breadcrumb-item>工作人员信息管理</el-breadcrumb-item>
     </el-breadcrumb>
     <!-- 搜索筛选 -->
     <el-form :inline="true" :model="formInline" class="user-search">
-      <el-form-item label="搜索：">
+      <!-- <el-form-item label="搜索：">
         <el-input size="small" v-model="formInline.deptName" placeholder="输入部门名称"></el-input>
       </el-form-item>
       <el-form-item label="">
         <el-input size="small" v-model="formInline.deptNo" placeholder="输入部门代码"></el-input>
-      </el-form-item>
+      </el-form-item> -->
       <el-form-item>
-        <el-button size="small" type="primary" icon="el-icon-search" @click="search">搜索</el-button>
+        <!-- <el-button size="small" type="primary" icon="el-icon-search" @click="search">搜索</el-button> -->
         <el-button size="small" type="primary" icon="el-icon-plus" @click="handleEdit()">添加</el-button>
       </el-form-item>
     </el-form>
@@ -40,6 +40,7 @@
         <template slot-scope="scope">
           <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
           <el-button size="mini" type="danger" @click="deleteUser(scope.$index, scope.row)">删除</el-button>
+          <el-button size="mini" type="success">采集信息</el-button>
         </template>
       </el-table-column>
     </el-table>

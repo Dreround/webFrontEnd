@@ -63,7 +63,7 @@
             @click="deleteUser(scope.$index, scope.row)"
             >删除</el-button
           >
-          <el-button size="mini" type="success">采集信息</el-button>
+          <el-button size="mini" type="success" @click="opencamera">采集信息</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -184,6 +184,10 @@ export default {
    * 里面的方法只有被调用才会执行
    */
   methods: {
+    opencamera(){
+      this.$router.push({ path: '/goods/oldmancamera' })
+
+    },
     // 获取公司列表
     getdata(parameter) {
       this.loading = true;

@@ -10,6 +10,7 @@ import index from '@/views/index';
  */
 // 商品管理
 import oldman from '@/views/goods/oldman';
+import oldmancamera from '@/views/goods/oldmancamera';
 import workers from '@/views/goods/workers';
 import volunteers from '@/views/goods/volunteers';
 // 机器信息管理
@@ -82,6 +83,14 @@ export default new Router({
                 path: '/goods/oldman',
                 name: '老人信息管理',
                 component: oldman,
+                meta: {
+                    requireAuth: true
+                }
+            },
+            {
+                path: '/goods/oldmancamera',
+                name: '老人信息采集',
+                component: oldmancamera,
                 meta: {
                     requireAuth: true
                 }

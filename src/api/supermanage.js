@@ -1,5 +1,14 @@
 import request from '../api/request'
 
+
+export function loginVerify(params) {
+    return request({
+        url: 'http://192.168.81.25:8080/Login/verify',
+        method: 'get',
+        params
+    })
+}
+
 export function AddOldPeople(params) {
     return request({
         url: 'http://192.168.81.25:8080/ElderManage/addElder',
@@ -28,5 +37,12 @@ export function findAllOldPeople(params) {
         url: 'http://192.168.81.25:8080/ElderManage/findAll',
         method: 'get',
         data: params
+    })
+}
+
+export function chartOldPeople() {
+    return request({
+        url: 'http://192.168.81.25:8080/ElderManage/selectByAge',
+        method: 'get'
     })
 }

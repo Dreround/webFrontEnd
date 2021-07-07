@@ -10,14 +10,24 @@
     </el-breadcrumb>
     <!-- 搜索筛选 -->
     <el-form :inline="true" :model="formInline" class="user-search">
-      <!-- <el-form-item label="搜索：">
-        <el-input size="small" v-model="formInline.deptName" placeholder="输入部门名称"></el-input>
+      <el-form-item label="搜索：">
+        <el-input
+          size="small"
+          v-model="formInline.name"
+          placeholder="输入姓名进行搜索"
+        ></el-input>
       </el-form-item>
-      <el-form-item label="">
+      <!-- <el-form-item label="">
         <el-input size="small" v-model="formInline.deptNo" placeholder="输入部门代码"></el-input>
       </el-form-item> -->
       <el-form-item>
-        <!-- <el-button size="small" type="primary" icon="el-icon-search" @click="search">搜索</el-button> -->
+        <el-button
+          size="small"
+          type="primary"
+          icon="el-icon-search"
+          @click="search"
+          >搜索</el-button
+        >
         <el-button
           size="small"
           type="primary"
@@ -39,15 +49,17 @@
     >
       <el-table-column align="center" type="selection" width="60">
       </el-table-column>
-      <el-table-column sortable prop="elder_id" label="序号" width="100">
-      </el-table-column>
       <el-table-column sortable prop="name" label="姓名" width="100">
       </el-table-column>
       <el-table-column sortable prop="gender" label="性别" width="100">
       </el-table-column>
+      <el-table-column sortable prop="age" label="年龄" width="100">
+      </el-table-column>
       <el-table-column sortable prop="phone" label="手机号" width="200">
       </el-table-column>
       <el-table-column sortable prop="id_card" label="身份证" width="300">
+      </el-table-column>
+      <el-table-column sortable prop="description" label="描述" width="300">
       </el-table-column>
       <el-table-column
         sortable
@@ -72,7 +84,7 @@
             @click="deleteUser(scope.$index, scope.row)"
             >删除</el-button
           >
-          <el-button size="mini" type="success">采集信息</el-button>
+          <el-button size="mini" type="success" @click="opencamera">采集信息</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -108,6 +120,39 @@
             v-model="editForm.gender"
             auto-complete="off"
             placeholder="请输入性别"
+          ></el-input>
+        </el-form-item>
+        <el-form-item label="年龄" prop="age">
+          <el-input
+            size="small"
+            v-model="editForm.age"
+            auto-complete="off"
+            placeholder="请输入年龄"
+          ></el-input>
+        </el-form-item>
+        <el-form-item label="手机号" prop="phone">
+          <el-input
+            size="small"
+            v-model="editForm.phone"
+            auto-complete="off"
+            placeholder="请输入手机号"
+          ></el-input>
+        </el-form-item>
+        <el-form-item label="身份证号" prop="id_card">
+          <el-input
+            size="small"
+            v-model="editForm.id_card"
+            auto-complete="off"
+            placeholder="请输入身份证号"
+          ></el-input>
+        </el-form-item>
+        <el-form-item label="描述" prop="description">
+          <el-input
+            type="textarea"
+            :rows="3"
+            v-model="editForm.description"
+            auto-complete="off"
+            placeholder="请输入对老人的一些描述"
           ></el-input>
         </el-form-item>
         <el-form-item label="创建者" prop="creator">
@@ -155,13 +200,18 @@ export default {
       editForm: {
         name: "",
         gender: "",
+        age: "",
+        phone: "",
+        id_card: "",
+        description: "",
         creator: "",
         token: localStorage.getItem("logintoken"),
       },
       // rules表单验证
       rules: {
-        name: [{ required: true, message: "请输入老人", trigger: "blur" }],
+        name: [{ required: true, message: "请输入老人名字", trigger: "blur" }],
         gender: [{ required: true, message: "请输入性别", trigger: "blur" }],
+        age: [{ required: true, message: "请输入年龄", trigger: "blur" }],
       },
       formInline: {
         page: 1,
@@ -204,6 +254,10 @@ export default {
    * 里面的方法只有被调用才会执行
    */
   methods: {
+    opencamera(){
+      this.$router.push({ path: 'goods/vulunteers' })
+
+    },
     // 获取公司列表
     getdata(parameter) {
       this.loading = true;
